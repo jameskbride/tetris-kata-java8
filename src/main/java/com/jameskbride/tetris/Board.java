@@ -34,10 +34,10 @@ public class Board {
         return boardData[rowIndex][columnIndex];
     }
 
-    public void setPiece(TetrisPiece piece, int rowIndex, int columnIndex) {
-        int currentBoardRowIndex = rowIndex;
+    public void setPiece(TetrisPiece piece, int initialRowIndex, int initialColumnIndex) {
+        int currentBoardRowIndex = initialRowIndex;
         for (int pieceRowIndex=0; pieceRowIndex<piece.getShape().length; pieceRowIndex++) {
-            int currentBoardColumnIndex = columnIndex;
+            int currentBoardColumnIndex = initialColumnIndex;
             for (int pieceColumnIndex=0; pieceColumnIndex<piece.getShape()[0].length; pieceColumnIndex++) {
                 boardData[currentBoardRowIndex][currentBoardColumnIndex] = piece.getShape()[pieceRowIndex][pieceColumnIndex];
                 currentBoardColumnIndex += 1;
