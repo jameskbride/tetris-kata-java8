@@ -1,6 +1,6 @@
 package com.jameskbride.tetris;
 
-public class LeftSShape implements TetrisPiece{
+public class LeftSPiece implements TetrisPiece{
 
     public String[][] getShape() {
         String[][] shape = {

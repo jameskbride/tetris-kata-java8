@@ -7,13 +7,13 @@ import static com.jameskbride.tetris.TetrisPiece.EMPTY_SPACE;
 import static com.jameskbride.tetris.TetrisPiece.FILLED_SPACE;
 import static org.junit.Assert.assertArrayEquals;
 
-public class LeftSShapeTest {
+public class LeftSPieceTest {
 
-    private LeftSShape leftSShape;
+    private LeftSPiece leftSPiece;
 
     @Before
     public void setUp() {
-        leftSShape = new LeftSShape();
+        leftSPiece = new LeftSPiece();
     }
 
     @Test
@@ -24,6 +24,6 @@ public class LeftSShapeTest {
                 {EMPTY_SPACE, FILLED_SPACE}
         };
 
-        assertArrayEquals(expectedShape, leftSShape.getShape());
+        assertArrayEquals(expectedShape, leftSPiece.getShape());
     }
 }
