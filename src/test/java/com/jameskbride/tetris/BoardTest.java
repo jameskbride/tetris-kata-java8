@@ -73,17 +73,4 @@ public class BoardTest {
         assertEquals(leftLShape[2][0], board.getLocation(2, 0));
         assertEquals(leftLShape[2][1], board.getLocation(2, 1));
     }
-
-    @Test
-    public void whenAPieceIsMovedThenItDescendsOneRow() {
-        Board board = new Board();
-        board.setPiece(new LeftLPiece(), new Coords(0, 0));
-
-        board.movePiece();
-
-        assertEquals(FILLED_SPACE, board.getLocation(1, 0));
-        assertEquals(FILLED_SPACE, board.getLocation(2, 0));
-        assertEquals(FILLED_SPACE, board.getLocation(3, 0));
-        assertEquals(FILLED_SPACE, board.getLocation(3, 1));
-    }
 }

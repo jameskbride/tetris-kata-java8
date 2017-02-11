@@ -10,8 +10,6 @@ public class Board {
     private static final int BOARD_WIDTH = 10;
 
     private String[][] boardData;
-    private TetrisPiece activePiece;
-    private Coords pieceCoordinates;
 
     public Board() {
         initializeBoard();
@@ -39,14 +37,7 @@ public class Board {
     }
 
     public void setPiece(TetrisPiece piece, Coords initialCoords) {
-        activePiece = piece;
-        pieceCoordinates = initialCoords;
         updateBoardData(piece, initialCoords);
-    }
-
-    public void movePiece() {
-        pieceCoordinates = new Coords(pieceCoordinates.getRowIndex() +1, pieceCoordinates.getColumnIndex());
-        updateBoardData(activePiece, pieceCoordinates);
     }
 
     private void updateBoardData(TetrisPiece piece, Coords initialCoords) {
