@@ -3,6 +3,8 @@ package com.jameskbride.tetris;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.jameskbride.tetris.TetrisPiece.EMPTY_SPACE;
+import static com.jameskbride.tetris.TetrisPiece.FILLED_SPACE;
 import static org.junit.Assert.assertEquals;
 
 public class BoardTest {
@@ -28,7 +30,7 @@ public class BoardTest {
     public void itShouldBeEmptyWhenCreated() {
         for (int rowIndex=0; rowIndex<board.getHeight(); rowIndex++) {
             for (int columnIndex=0; columnIndex<board.getWidth(); columnIndex++) {
-                assertEquals(" ", board.getLocation(rowIndex, columnIndex));
+                assertEquals(EMPTY_SPACE, board.getLocation(rowIndex, columnIndex));
             }
         }
     }
@@ -39,10 +41,10 @@ public class BoardTest {
 
         board.setPiece(squarePiece, 0, 0);
 
-        assertEquals("#", board.getLocation(0, 0));
-        assertEquals("#", board.getLocation(0, 1));
-        assertEquals("#", board.getLocation(1, 0));
-        assertEquals("#", board.getLocation(1, 1));
+        assertEquals(FILLED_SPACE, board.getLocation(0, 0));
+        assertEquals(FILLED_SPACE, board.getLocation(0, 1));
+        assertEquals(FILLED_SPACE, board.getLocation(1, 0));
+        assertEquals(FILLED_SPACE, board.getLocation(1, 1));
     }
 
     @Test
@@ -52,9 +54,9 @@ public class BoardTest {
         board.setPiece(leftLPiece, 0, 0);
 
         String[][] leftLShape = {
-                {"#", " "},
-                {"#", " "},
-                {"#", "#"}
+                {FILLED_SPACE, EMPTY_SPACE},
+                {FILLED_SPACE, EMPTY_SPACE},
+                {FILLED_SPACE, FILLED_SPACE}
         };
 
         assertEquals(leftLShape[0][0], board.getLocation(0, 0));

@@ -1,10 +1,11 @@
 package com.jameskbride.tetris;
 
+import static com.jameskbride.tetris.TetrisPiece.EMPTY_SPACE;
+
 public class Board {
 
     private static final int BOARD_HEIGHT = 24;
     private static final int BOARD_WIDTH = 10;
-    private static final String EMPTY_SPACE = " ";
 
     String[][] boardData;
 
