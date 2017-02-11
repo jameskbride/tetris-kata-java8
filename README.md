@@ -33,7 +33,7 @@ x    x x    x        x    x      x x    x x</pre>
 <pre>As the game
 In order to advance the game
 I want to create a new piece if no active pieces exist</pre>
-At the beginning of the game a new piece will be created at the top center of the board.  Both the rotation and the shape of the piece (out of the possible pieces listed above) will be random.
+At the beginning of the game a new piece will be created at the top center of the board.
 
 <pre>As the game
 In order to advance the game
