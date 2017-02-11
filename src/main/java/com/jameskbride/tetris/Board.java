@@ -9,7 +9,9 @@ public class Board {
     private static final int BOARD_HEIGHT = 24;
     private static final int BOARD_WIDTH = 10;
 
-    String[][] boardData;
+    private String[][] boardData;
+    private TetrisPiece activePiece;
+    private Coords pieceCoordinates;
 
     public Board() {
         initializeBoard();
@@ -36,10 +38,21 @@ public class Board {
         return boardData[rowIndex][columnIndex];
     }
 
-    public void setPiece(TetrisPiece piece, int initialRowIndex, int initialColumnIndex) {
-        int currentBoardRowIndex = initialRowIndex;
+    public void setPiece(TetrisPiece piece, Coords initialCoords) {
+        activePiece = piece;
+        pieceCoordinates = initialCoords;
+        updateBoardData(piece, initialCoords);
+    }
+
+    public void movePiece() {
+        pieceCoordinates = new Coords(pieceCoordinates.getRowIndex() +1, pieceCoordinates.getColumnIndex());
+        updateBoardData(activePiece, pieceCoordinates);
+    }
+
+    private void updateBoardData(TetrisPiece piece, Coords initialCoords) {
+        int currentBoardRowIndex = initialCoords.getRowIndex();
         for (int pieceRowIndex=0; pieceRowIndex<piece.getShape().length; pieceRowIndex++) {
-            int currentBoardColumnIndex = initialColumnIndex;
+            int currentBoardColumnIndex = initialCoords.getColumnIndex();
             for (int pieceColumnIndex=0; pieceColumnIndex<piece.getShape()[0].length; pieceColumnIndex++) {
                 boardData[currentBoardRowIndex][currentBoardColumnIndex] = piece.getShape()[pieceRowIndex][pieceColumnIndex];
                 currentBoardColumnIndex += 1;

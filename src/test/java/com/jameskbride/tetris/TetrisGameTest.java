@@ -1,11 +1,18 @@
 package com.jameskbride.tetris;
 
+import com.jameskbride.tetris.pieces.LeftLPiece;
 import com.jameskbride.tetris.pieces.SquarePiece;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static com.jameskbride.tetris.pieces.TetrisPiece.EMPTY_SPACE;
 import static com.jameskbride.tetris.pieces.TetrisPiece.FILLED_SPACE;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class TetrisGameTest {
 
@@ -26,5 +33,18 @@ public class TetrisGameTest {
         assertEquals(FILLED_SPACE, startGame.getBoard().getLocation(0, 6));
         assertEquals(FILLED_SPACE, startGame.getBoard().getLocation(1, 5));
         assertEquals(FILLED_SPACE, startGame.getBoard().getLocation(1, 6));
+    }
+
+    @Test
+    public void givenTheGameIsInProgressWhenATickOccursThenTheActivePieceMovesDownOneRow() {
+        LeftLPiece leftLPiece = new LeftLPiece();
+
+        TetrisGame startGame = tetrisGame.startGame(leftLPiece);
+        TetrisGame gameAfterOneTick = startGame.tick();
+
+        assertEquals(FILLED_SPACE, gameAfterOneTick.getBoard().getLocation(1, 5));
+        assertEquals(FILLED_SPACE, gameAfterOneTick.getBoard().getLocation(2, 5));
+        assertEquals(FILLED_SPACE, gameAfterOneTick.getBoard().getLocation(3, 5));
+        assertEquals(FILLED_SPACE, gameAfterOneTick.getBoard().getLocation(3, 6));
     }
 }

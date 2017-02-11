@@ -5,9 +5,14 @@ import com.jameskbride.tetris.pieces.SquarePiece;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static com.jameskbride.tetris.pieces.TetrisPiece.EMPTY_SPACE;
 import static com.jameskbride.tetris.pieces.TetrisPiece.FILLED_SPACE;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class BoardTest {
 
@@ -41,7 +46,7 @@ public class BoardTest {
     public void whenASquarePieceIsSetThenItIsPlacedAtTheGivenLocation() {
         SquarePiece squarePiece = new SquarePiece();
 
-        board.setPiece(squarePiece, 0, 0);
+        board.setPiece(squarePiece, new Coords(0, 0));
 
         assertEquals(FILLED_SPACE, board.getLocation(0, 0));
         assertEquals(FILLED_SPACE, board.getLocation(0, 1));
@@ -53,7 +58,7 @@ public class BoardTest {
     public void whenALeftLPieceIsSetThenItIsPlacedAtTheGivenLocation() {
         LeftLPiece leftLPiece = new LeftLPiece();
 
-        board.setPiece(leftLPiece, 0, 0);
+        board.setPiece(leftLPiece, new Coords(0, 0));
 
         String[][] leftLShape = {
                 {FILLED_SPACE, EMPTY_SPACE},
@@ -67,5 +72,18 @@ public class BoardTest {
         assertEquals(leftLShape[1][1], board.getLocation(1, 1));
         assertEquals(leftLShape[2][0], board.getLocation(2, 0));
         assertEquals(leftLShape[2][1], board.getLocation(2, 1));
+    }
+
+    @Test
+    public void whenAPieceIsMovedThenItDescendsOneRow() {
+        Board board = new Board();
+        board.setPiece(new LeftLPiece(), new Coords(0, 0));
+
+        board.movePiece();
+
+        assertEquals(FILLED_SPACE, board.getLocation(1, 0));
+        assertEquals(FILLED_SPACE, board.getLocation(2, 0));
+        assertEquals(FILLED_SPACE, board.getLocation(3, 0));
+        assertEquals(FILLED_SPACE, board.getLocation(3, 1));
     }
 }
