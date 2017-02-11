@@ -10,10 +10,8 @@ public class TetrisGameTest {
     public void whenTheGameIsStartedThenAPieceIsPlacedAtTheTopCenterOfTheBoard() {
         TetrisGame tetrisGame = new TetrisGame();
 
-        String[][] squarePiece = {
-            {"#", "#"},
-            {"#", "#"}
-        };
+        SquarePiece squarePiece = new SquarePiece();
+
         Board board = tetrisGame.startGame(squarePiece);
 
         assertEquals("#", board.getLocation(0, 5));

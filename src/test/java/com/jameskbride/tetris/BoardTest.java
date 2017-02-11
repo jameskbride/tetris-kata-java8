@@ -35,10 +35,7 @@ public class BoardTest {
 
     @Test
     public void whenAPieceIsSetThenItIsPlacedAtTheGivenLocation() {
-        String[][] squarePiece = {
-                {"#", "#"},
-                {"#", "#"}
-        };
+        SquarePiece squarePiece = new SquarePiece();
 
         board.setPiece(squarePiece, 0, 0);
 

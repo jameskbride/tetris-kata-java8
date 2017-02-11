@@ -33,12 +33,12 @@ public class Board {
         return boardData[rowIndex][columnIndex];
     }
 
-    public void setPiece(String[][] piece, int rowIndex, int columnIndex) {
+    public void setPiece(SquarePiece piece, int rowIndex, int columnIndex) {
         int currentBoardRowIndex = rowIndex;
-        for (int pieceRowIndex=0; pieceRowIndex<piece.length; pieceRowIndex++) {
+        for (int pieceRowIndex=0; pieceRowIndex<piece.getShape().length; pieceRowIndex++) {
             int currentBoardColumnIndex = columnIndex;
-            for (int pieceColumnIndex=0; pieceColumnIndex< piece[0].length; pieceColumnIndex++) {
-                boardData[currentBoardRowIndex][currentBoardColumnIndex] = piece[pieceRowIndex][pieceColumnIndex];
+            for (int pieceColumnIndex=0; pieceColumnIndex<piece.getShape()[0].length; pieceColumnIndex++) {
+                boardData[currentBoardRowIndex][currentBoardColumnIndex] = piece.getShape()[pieceRowIndex][pieceColumnIndex];
                 currentBoardColumnIndex += 1;
             }
             currentBoardRowIndex += 1;
