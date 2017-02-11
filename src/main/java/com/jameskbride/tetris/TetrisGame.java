@@ -5,9 +5,11 @@ import com.jameskbride.tetris.pieces.TetrisPiece;
 public class TetrisGame {
 
     private static final Coords INITIAL_COORDS;
+    private static final int INITIAL_ROW_INDEX = 0;
+    private static final int INITIAL_COLUMN_INDEX = 5;
 
     static {
-        INITIAL_COORDS = new Coords(0, 5);
+        INITIAL_COORDS = new Coords(INITIAL_ROW_INDEX, INITIAL_COLUMN_INDEX);
     }
 
     private final Board board;
