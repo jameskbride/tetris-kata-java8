@@ -23,4 +23,13 @@ public class BoardTest {
     public void itShouldHave10Columns() {
         assertEquals(10, board.getWidth());
     }
+
+    @Test
+    public void itShouldBeEmptyWhenCreated() {
+        for (int rowIndex=0; rowIndex<board.getHeight(); rowIndex++) {
+            for (int columnIndex=0; columnIndex<board.getWidth(); columnIndex++) {
+                assertEquals(" ", board.getLocation(rowIndex, columnIndex));
+            }
+        }
+    }
 }
