@@ -22,11 +22,11 @@ public class Board {
     }
 
     public int getHeight() {
-        return BOARD_HEIGHT;
+        return boardData.length;
     }
 
     public int getWidth() {
-        return BOARD_WIDTH;
+        return boardData[0].length;
     }
 
     public String getLocation(int rowIndex, int columnIndex) {
