@@ -33,7 +33,7 @@ public class Board {
         return boardData[rowIndex][columnIndex];
     }
 
-    public void setPiece(SquarePiece piece, int rowIndex, int columnIndex) {
+    public void setPiece(TetrisPiece piece, int rowIndex, int columnIndex) {
         int currentBoardRowIndex = rowIndex;
         for (int pieceRowIndex=0; pieceRowIndex<piece.getShape().length; pieceRowIndex++) {
             int currentBoardColumnIndex = columnIndex;

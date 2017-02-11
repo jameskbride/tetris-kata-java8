@@ -1,8 +1,7 @@
 package com.jameskbride.tetris;
 
-public class LeftLPiece extends SquarePiece {
+public class LeftLPiece implements TetrisPiece {
 
-    @Override
     public String[][] getShape() {
         String[][] leftLShape = {
                 {"#", " "},

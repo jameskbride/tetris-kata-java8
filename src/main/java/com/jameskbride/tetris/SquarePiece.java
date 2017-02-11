@@ -1,8 +1,8 @@
 package com.jameskbride.tetris;
 
-public class SquarePiece {
+public class SquarePiece implements TetrisPiece {
 
-    protected String[][] getShape() {
+    public String[][] getShape() {
         String[][] shape = {
             {"#", "#"},
             {"#", "#"}
