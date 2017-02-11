@@ -31,19 +31,24 @@ x    x x    x x    x x    x x    x        x
 x    x x    x        x    x      x x    x x</pre>
 
 <pre>As the game
-In order to advance the game
-I want to create a new piece if no active pieces exist</pre>
-At the beginning of the game a new piece will be created at the top center of the board.
+In order to start the game
+I want to create a new piece</pre>
+At the beginning of the game a new piece will be created at the top center of the board.  The shape of the piece will be random.
 
 <pre>As the game
 In order to advance the game
 I want to move a piece down the board</pre>
-At a regular interval the game will move the active piece one unit towards the bottom of the board.  The shape of the piece will be random.
+At a regular interval the game will move the active piece one unit towards the bottom of the board.
 
 <pre>As the game
 In order to advance the game
 I want to stop a piece from advancing further</pre>
-If a piece collides with another occupied block that piece will no longer be active and will stop advancing and will retain it's current rotation and previous position.  Concurrently, if a piece collides with the bottom of the board it will also stop advancing (maintaining it's current rotation and previous position).
+If a piece collides with another occupied block that piece will no longer be active. It will stop advancing and will retain it's current rotation and previous position.  Concurrently, if a piece collides with the bottom of the board it will also stop advancing (maintaining it's current rotation and previous position). Stopped pieces can no longer be moved by the player and become a part of the board.
+
+<pre>As the game
+In order to advance the game
+I want to create a new piece if there is no active piece.</pre>
+If the game is not over and no active piece exists (i.e. a piece that can still be moved by the player according to the previous rule), then a new active piece will be created at the top center of the board.
 
 <pre>As the game
 In order to advance the game
