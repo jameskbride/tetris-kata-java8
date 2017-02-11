@@ -38,7 +38,7 @@ At the beginning of the game a new piece will be created at the top center of th
 <pre>As the game
 In order to advance the game
 I want to move a piece down the board</pre>
-At a regular interval the game will move the active piece one unit towards the bottom of the board.
+At a regular interval the game will move the active piece one unit towards the bottom of the board.  The shape of the piece will be random.
 
 <pre>As the game
 In order to advance the game
