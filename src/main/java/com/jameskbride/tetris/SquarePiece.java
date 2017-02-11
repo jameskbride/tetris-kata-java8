@@ -2,7 +2,7 @@ package com.jameskbride.tetris;
 
 public class SquarePiece {
 
-    String[][] getShape() {
+    protected String[][] getShape() {
         String[][] shape = {
             {"#", "#"},
             {"#", "#"}

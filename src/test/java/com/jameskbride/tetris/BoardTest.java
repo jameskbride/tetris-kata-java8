@@ -34,7 +34,7 @@ public class BoardTest {
     }
 
     @Test
-    public void whenAPieceIsSetThenItIsPlacedAtTheGivenLocation() {
+    public void whenASquarePieceIsSetThenItIsPlacedAtTheGivenLocation() {
         SquarePiece squarePiece = new SquarePiece();
 
         board.setPiece(squarePiece, 0, 0);
@@ -43,5 +43,25 @@ public class BoardTest {
         assertEquals("#", board.getLocation(0, 1));
         assertEquals("#", board.getLocation(1, 0));
         assertEquals("#", board.getLocation(1, 1));
+    }
+
+    @Test
+    public void whenALeftLPieceIsSetThenItIsPlacedAtTheGivenLocation() {
+        LeftLPiece leftLPiece = new LeftLPiece();
+
+        board.setPiece(leftLPiece, 0, 0);
+
+        String[][] leftLShape = {
+                {"#", " "},
+                {"#", " "},
+                {"#", "#"}
+        };
+
+        assertEquals(leftLShape[0][0], board.getLocation(0, 0));
+        assertEquals(leftLShape[0][1], board.getLocation(0, 1));
+        assertEquals(leftLShape[1][0], board.getLocation(1, 0));
+        assertEquals(leftLShape[1][1], board.getLocation(1, 1));
+        assertEquals(leftLShape[2][0], board.getLocation(2, 0));
+        assertEquals(leftLShape[2][1], board.getLocation(2, 1));
     }
 }
