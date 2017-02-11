@@ -1,9 +1,9 @@
-package com.jameskbride.tetris;
+package com.jameskbride.tetris.pieces;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.jameskbride.tetris.TetrisPiece.FILLED_SPACE;
+import static com.jameskbride.tetris.pieces.TetrisPiece.FILLED_SPACE;
 import static org.junit.Assert.assertArrayEquals;
 
 public class StraightLineTest {

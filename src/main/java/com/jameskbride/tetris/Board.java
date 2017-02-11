@@ -1,6 +1,8 @@
 package com.jameskbride.tetris;
 
-import static com.jameskbride.tetris.TetrisPiece.EMPTY_SPACE;
+import com.jameskbride.tetris.pieces.TetrisPiece;
+
+import static com.jameskbride.tetris.pieces.TetrisPiece.EMPTY_SPACE;
 
 public class Board {
 

@@ -1,10 +1,12 @@
 package com.jameskbride.tetris;
 
+import com.jameskbride.tetris.pieces.LeftLPiece;
+import com.jameskbride.tetris.pieces.SquarePiece;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.jameskbride.tetris.TetrisPiece.EMPTY_SPACE;
-import static com.jameskbride.tetris.TetrisPiece.FILLED_SPACE;
+import static com.jameskbride.tetris.pieces.TetrisPiece.EMPTY_SPACE;
+import static com.jameskbride.tetris.pieces.TetrisPiece.FILLED_SPACE;
 import static org.junit.Assert.assertEquals;
 
 public class BoardTest {

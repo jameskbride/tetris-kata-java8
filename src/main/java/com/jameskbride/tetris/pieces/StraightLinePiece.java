@@ -1,4 +1,4 @@
-package com.jameskbride.tetris;
+package com.jameskbride.tetris.pieces;
 
 public class StraightLinePiece implements TetrisPiece {
 

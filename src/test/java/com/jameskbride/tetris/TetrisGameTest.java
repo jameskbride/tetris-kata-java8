@@ -1,8 +1,9 @@
 package com.jameskbride.tetris;
 
+import com.jameskbride.tetris.pieces.SquarePiece;
 import org.junit.Test;
 
-import static com.jameskbride.tetris.TetrisPiece.FILLED_SPACE;
+import static com.jameskbride.tetris.pieces.TetrisPiece.FILLED_SPACE;
 import static org.junit.Assert.assertEquals;
 
 public class TetrisGameTest {

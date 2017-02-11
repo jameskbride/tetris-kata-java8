@@ -1,12 +1,12 @@
-package com.jameskbride.tetris;
+package com.jameskbride.tetris.pieces;
 
-public class TPiece implements TetrisPiece {
+public class LeftSPiece implements TetrisPiece{
 
     public String[][] getShape() {
         String[][] shape = {
                 {FILLED_SPACE, EMPTY_SPACE},
                 {FILLED_SPACE, FILLED_SPACE},
-                {FILLED_SPACE, EMPTY_SPACE}
+                {EMPTY_SPACE, FILLED_SPACE}
         };
 
         return shape;
