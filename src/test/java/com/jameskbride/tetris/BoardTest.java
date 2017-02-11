@@ -32,4 +32,19 @@ public class BoardTest {
             }
         }
     }
+
+    @Test
+    public void whenAPieceIsSetThenItIsPlacedAtTheGivenLocation() {
+        String[][] squarePiece = {
+                {"#", "#"},
+                {"#", "#"}
+        };
+
+        board.setPiece(squarePiece, 0, 0);
+
+        assertEquals("#", board.getLocation(0, 0));
+        assertEquals("#", board.getLocation(0, 1));
+        assertEquals("#", board.getLocation(1, 0));
+        assertEquals("#", board.getLocation(1, 1));
+    }
 }
