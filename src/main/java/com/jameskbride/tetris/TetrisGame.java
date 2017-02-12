@@ -4,9 +4,10 @@ import com.jameskbride.tetris.pieces.TetrisPiece;
 
 public class TetrisGame {
 
+    public static final int INITIAL_ROW_INDEX = 0;
+    public static final int INITIAL_COLUMN_INDEX = 5;
+
     private static final Coords INITIAL_COORDS;
-    private static final int INITIAL_ROW_INDEX = 0;
-    private static final int INITIAL_COLUMN_INDEX = 5;
 
     static {
         INITIAL_COORDS = new Coords(INITIAL_ROW_INDEX, INITIAL_COLUMN_INDEX);
@@ -42,9 +43,12 @@ public class TetrisGame {
     }
 
     public TetrisGame tick() {
-        board.setPiece(activePiece, new Coords(pieceCoordinates.getRowIndex() + 1, pieceCoordinates.getColumnIndex()));
+        Coords previousCoords = pieceCoordinates;
+        Coords newCoords = new Coords(previousCoords.getRowIndex() + 1, previousCoords.getColumnIndex());
+        board.setPiece(activePiece, newCoords);
+        board.clearSectionAbovePiece(activePiece, previousCoords);
 
-        return new TetrisGame(board, activePiece, pieceCoordinates);
+        return new TetrisGame(board, activePiece, newCoords);
     }
 
     //Placeholder for TetrisGame constructor only.  Never to be used in the game.

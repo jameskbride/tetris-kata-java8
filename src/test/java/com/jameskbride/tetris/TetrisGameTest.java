@@ -36,7 +36,7 @@ public class TetrisGameTest {
     }
 
     @Test
-    public void givenTheGameIsInProgressWhenATickOccursThenTheActivePieceMovesDownOneRow() {
+    public void whenATickOccursThenTheActivePieceDescendsOneRow() {
         LeftLPiece leftLPiece = new LeftLPiece();
 
         TetrisGame startGame = tetrisGame.startGame(leftLPiece);
@@ -46,5 +46,17 @@ public class TetrisGameTest {
         assertEquals(FILLED_SPACE, gameAfterOneTick.getBoard().getLocation(2, 5));
         assertEquals(FILLED_SPACE, gameAfterOneTick.getBoard().getLocation(3, 5));
         assertEquals(FILLED_SPACE, gameAfterOneTick.getBoard().getLocation(3, 6));
+    }
+
+    @Test
+    public void whenATickOccursThenTheSectionOfRowAboveTheActivePieceIsCleared() {
+        LeftLPiece leftLPiece = new LeftLPiece();
+
+        TetrisGame startGame = tetrisGame.startGame(leftLPiece);
+        TetrisGame gameAfterOneTick = startGame.tick();
+        Board board = gameAfterOneTick.getBoard();
+
+        assertEquals(EMPTY_SPACE, board.getLocation(TetrisGame.INITIAL_ROW_INDEX, TetrisGame.INITIAL_COLUMN_INDEX));
+        assertEquals(EMPTY_SPACE, board.getLocation(TetrisGame.INITIAL_ROW_INDEX, TetrisGame.INITIAL_COLUMN_INDEX + 1));
     }
 }

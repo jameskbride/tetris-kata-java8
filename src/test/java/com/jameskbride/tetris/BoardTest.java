@@ -73,4 +73,17 @@ public class BoardTest {
         assertEquals(leftLShape[2][0], board.getLocation(2, 0));
         assertEquals(leftLShape[2][1], board.getLocation(2, 1));
     }
+
+    @Test
+    public void givenPieceCoordinatesThenItShouldClearTheSectionOfRowMatchingTheWidthOfThePiece() {
+        LeftLPiece leftLPiece = new LeftLPiece();
+        Coords firstCoords = new Coords(0, 0);
+        board.setPiece(leftLPiece, firstCoords);
+        board.setPiece(leftLPiece, new Coords(1, 0));
+
+        board.clearSectionAbovePiece(leftLPiece, firstCoords);
+
+        assertEquals(EMPTY_SPACE, board.getLocation(0, 0));
+        assertEquals(EMPTY_SPACE, board.getLocation(0, 1));
+    }
 }

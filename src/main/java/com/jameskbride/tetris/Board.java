@@ -51,4 +51,12 @@ public class Board {
             currentBoardRowIndex += 1;
         }
     }
+
+    public void clearSectionAbovePiece(TetrisPiece activePiece, Coords previousCoords) {
+        int pieceWidth = activePiece.getShape()[0].length;
+
+        for (int i=0; i<pieceWidth; i++) {
+            boardData[previousCoords.getRowIndex()][previousCoords.getColumnIndex() + i] = EMPTY_SPACE;
+        }
+    }
 }
