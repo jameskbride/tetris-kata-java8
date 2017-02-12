@@ -44,11 +44,17 @@ public class TetrisGame {
 
     public TetrisGame tick() {
         Coords previousCoords = pieceCoordinates;
+        Coords newCoords = movePiece(previousCoords);
+
+        return new TetrisGame(board, activePiece, newCoords);
+    }
+
+    private Coords movePiece(Coords previousCoords) {
         Coords newCoords = new Coords(previousCoords.getRowIndex() + 1, previousCoords.getColumnIndex());
         board.setPiece(activePiece, newCoords);
         board.clearSectionAbovePiece(activePiece, previousCoords);
-
-        return new TetrisGame(board, activePiece, newCoords);
+        
+        return newCoords;
     }
 
     //Placeholder for TetrisGame constructor only.  Never to be used in the game.
