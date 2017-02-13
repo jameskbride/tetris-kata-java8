@@ -8,8 +8,9 @@ public class TetrisGame {
     public static final int INITIAL_ROW_INDEX = 0;
     public static final int INITIAL_COLUMN_INDEX = 5;
 
-    private static final Coords INITIAL_COORDS;
+    private static final boolean NEW_PIECE = true;
 
+    private static final Coords INITIAL_COORDS;
     static {
         INITIAL_COORDS = new Coords(INITIAL_ROW_INDEX, INITIAL_COLUMN_INDEX);
     }
@@ -20,20 +21,20 @@ public class TetrisGame {
     private final PieceFactory pieceFactory;
     private final boolean newPiece;
 
-    public TetrisGame(Board board, TetrisPiece activePiece, Coords pieceCoordinates, PieceFactory pieceFactory, boolean newPiece) {
-        this.board = board;
-        this.activePiece = activePiece;
-        this.pieceCoordinates = pieceCoordinates;
-        this.pieceFactory = pieceFactory;
-        this.newPiece = newPiece;
-    }
-
     public TetrisGame() {
         this.board = new Board();
         this.pieceCoordinates = INITIAL_COORDS;
         this.activePiece = new EmptyPiece();
         this.pieceFactory = new PieceFactory();
-        this.newPiece = true;
+        this.newPiece = NEW_PIECE;
+    }
+    
+    private TetrisGame(Board board, TetrisPiece activePiece, Coords pieceCoordinates, PieceFactory pieceFactory, boolean newPiece) {
+        this.board = board;
+        this.activePiece = activePiece;
+        this.pieceCoordinates = pieceCoordinates;
+        this.pieceFactory = pieceFactory;
+        this.newPiece = newPiece;
     }
 
     public TetrisGame startGame(PieceFactory pieceFactory) {
@@ -42,7 +43,7 @@ public class TetrisGame {
         Coords pieceCoordinates = INITIAL_COORDS;
         board.setPiece(activePiece, pieceCoordinates);
 
-        return new TetrisGame(board, activePiece, pieceCoordinates, pieceFactory, false);
+        return new TetrisGame(board, activePiece, pieceCoordinates, pieceFactory, !NEW_PIECE);
     }
 
     public Board getBoard() {
@@ -57,9 +58,9 @@ public class TetrisGame {
         }
 
         if (pieceStopped) {
-           return new TetrisGame(board, pieceFactory.newPiece(), INITIAL_COORDS, pieceFactory, true);
+           return new TetrisGame(board, pieceFactory.newPiece(), INITIAL_COORDS, pieceFactory, NEW_PIECE);
         } else {
-            return new TetrisGame(board, activePiece, newCoords, pieceFactory, false);
+            return new TetrisGame(board, activePiece, newCoords, pieceFactory, !NEW_PIECE);
         }
     }
 
@@ -72,7 +73,7 @@ public class TetrisGame {
     }
 
     //Placeholder for TetrisGame constructor only.  Never to be used in the game.
-    public static class EmptyPiece implements TetrisPiece {
+    private static class EmptyPiece implements TetrisPiece {
 
         public String[][] getShape() {
             String[][] shape = {

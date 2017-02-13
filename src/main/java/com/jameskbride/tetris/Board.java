@@ -8,6 +8,7 @@ public class Board {
 
     private static final int BOARD_HEIGHT = 24;
     private static final int BOARD_WIDTH = 10;
+    private static final boolean PIECE_STOPPED = true;
 
     private String[][] boardData;
 
@@ -44,7 +45,7 @@ public class Board {
         int pieceLength = piece.getShape().length;
         int currentBoardRowIndex = coords.getRowIndex();
         if (currentBoardRowIndex + pieceLength - 1 >= getHeight()) {
-            return true;
+            return PIECE_STOPPED;
         }
         for (int pieceRowIndex=0; pieceRowIndex<pieceLength; pieceRowIndex++) {
             int currentBoardColumnIndex = coords.getColumnIndex();
@@ -55,7 +56,7 @@ public class Board {
             currentBoardRowIndex += 1;
         }
 
-        return false;
+        return !PIECE_STOPPED;
     }
 
     public void clearSectionAbovePiece(TetrisPiece activePiece, Coords previousCoords) {
