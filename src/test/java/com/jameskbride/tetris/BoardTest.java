@@ -2,6 +2,7 @@ package com.jameskbride.tetris;
 
 import com.jameskbride.tetris.pieces.LeftLPiece;
 import com.jameskbride.tetris.pieces.SquarePiece;
+import com.jameskbride.tetris.pieces.TetrisPiece;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 import static com.jameskbride.tetris.pieces.TetrisPiece.EMPTY_SPACE;
 import static com.jameskbride.tetris.pieces.TetrisPiece.FILLED_SPACE;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class BoardTest {
@@ -85,5 +87,33 @@ public class BoardTest {
 
         assertEquals(EMPTY_SPACE, board.getLocation(0, 0));
         assertEquals(EMPTY_SPACE, board.getLocation(0, 1));
+    }
+
+    @Test
+    public void whenThePieceHasAlreadyHitTheBottomOfTheBoardThenTheRemainsAtThePreviousLocation() {
+        LeftLPiece leftLPiece = new LeftLPiece();
+        Coords startingCoords = new Coords(0, 0);
+        Coords coords = movePieceToTheBottomOfTheBoard(leftLPiece, startingCoords);
+
+        assertEquals(FILLED_SPACE, board.getLocation(21, 0));
+        assertEquals(FILLED_SPACE, board.getLocation(22, 0));
+        assertEquals(FILLED_SPACE, board.getLocation(23, 0));
+        assertEquals(FILLED_SPACE, board.getLocation(23, 1));
+
+        assertTrue(board.setPiece(leftLPiece, new Coords(coords.getRowIndex() + 1, 0)));
+
+        assertEquals(FILLED_SPACE, board.getLocation(21, 0));
+        assertEquals(FILLED_SPACE, board.getLocation(22, 0));
+        assertEquals(FILLED_SPACE, board.getLocation(23, 0));
+        assertEquals(FILLED_SPACE, board.getLocation(23, 1));
+    }
+
+    private Coords movePieceToTheBottomOfTheBoard(TetrisPiece leftLPiece, Coords coords) {
+        int numTicks = board.getHeight() - leftLPiece.getShape().length;
+        for (int i=0; i<numTicks; i++) {
+            coords = new Coords(coords.getRowIndex() + i, 0);
+            board.setPiece(leftLPiece, coords);
+        }
+        return coords;
     }
 }

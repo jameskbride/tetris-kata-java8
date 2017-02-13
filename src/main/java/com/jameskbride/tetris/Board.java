@@ -36,20 +36,26 @@ public class Board {
         return boardData[rowIndex][columnIndex];
     }
 
-    public void setPiece(TetrisPiece piece, Coords initialCoords) {
-        updateBoardData(piece, initialCoords);
+    public boolean setPiece(TetrisPiece piece, Coords initialCoords) {
+        return updateBoardData(piece, initialCoords);
     }
 
-    private void updateBoardData(TetrisPiece piece, Coords initialCoords) {
-        int currentBoardRowIndex = initialCoords.getRowIndex();
-        for (int pieceRowIndex=0; pieceRowIndex<piece.getShape().length; pieceRowIndex++) {
-            int currentBoardColumnIndex = initialCoords.getColumnIndex();
+    private boolean updateBoardData(TetrisPiece piece, Coords coords) {
+        int pieceLength = piece.getShape().length;
+        int currentBoardRowIndex = coords.getRowIndex();
+        if (currentBoardRowIndex + pieceLength - 1 >= getHeight()) {
+            return true;
+        }
+        for (int pieceRowIndex=0; pieceRowIndex<pieceLength; pieceRowIndex++) {
+            int currentBoardColumnIndex = coords.getColumnIndex();
             for (int pieceColumnIndex=0; pieceColumnIndex<piece.getShape()[0].length; pieceColumnIndex++) {
                 boardData[currentBoardRowIndex][currentBoardColumnIndex] = piece.getShape()[pieceRowIndex][pieceColumnIndex];
                 currentBoardColumnIndex += 1;
             }
             currentBoardRowIndex += 1;
         }
+
+        return false;
     }
 
     public void clearSectionAbovePiece(TetrisPiece activePiece, Coords previousCoords) {
