@@ -28,7 +28,7 @@ public class TetrisGame {
         this.pieceFactory = new PieceFactory();
         this.newPiece = NEW_PIECE;
     }
-    
+
     private TetrisGame(Board board, TetrisPiece activePiece, Coords pieceCoordinates, PieceFactory pieceFactory, boolean newPiece) {
         this.board = board;
         this.activePiece = activePiece;
