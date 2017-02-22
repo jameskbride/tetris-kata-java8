@@ -1,5 +1,7 @@
 package com.jameskbride.tetris;
 
+import com.jameskbride.tetris.gamestates.AbstractTetrisGameState;
+import com.jameskbride.tetris.gamestates.TetrisGameState;
 import com.jameskbride.tetris.pieces.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,7 +28,7 @@ public class TetrisGameTest {
         SquarePiece squarePiece = new SquarePiece();
         when(pieceFactory.newPiece()).thenReturn(squarePiece);
 
-        ITetrisGame startGame = TetrisGame.startGame(pieceFactory);
+        TetrisGameState startGame = TetrisGame.startGame(pieceFactory);
 
         assertEquals(FILLED_SPACE, startGame.getBoard().getLocation(0, 5));
         assertEquals(FILLED_SPACE, startGame.getBoard().getLocation(0, 6));
@@ -39,8 +41,8 @@ public class TetrisGameTest {
         LeftLPiece leftLPiece = new LeftLPiece();
         when(pieceFactory.newPiece()).thenReturn(leftLPiece);
 
-        ITetrisGame startGame = TetrisGame.startGame(pieceFactory);
-        ITetrisGame gameAfterOneTick = startGame.tick();
+        TetrisGameState startGame = TetrisGame.startGame(pieceFactory);
+        TetrisGameState gameAfterOneTick = startGame.tick();
 
         assertEquals(FILLED_SPACE, gameAfterOneTick.getBoard().getLocation(1, 5));
         assertEquals(FILLED_SPACE, gameAfterOneTick.getBoard().getLocation(2, 5));
@@ -53,19 +55,19 @@ public class TetrisGameTest {
         LeftLPiece leftLPiece = new LeftLPiece();
         when(pieceFactory.newPiece()).thenReturn(leftLPiece);
 
-        ITetrisGame startGame = TetrisGame.startGame(pieceFactory);
-        ITetrisGame gameAfterOneTick = startGame.tick();
+        TetrisGameState startGame = TetrisGame.startGame(pieceFactory);
+        TetrisGameState gameAfterOneTick = startGame.tick();
         Board board = gameAfterOneTick.getBoard();
 
-        assertEquals(EMPTY_SPACE, board.getLocation(TetrisGame.INITIAL_ROW_INDEX, TetrisGame.INITIAL_COLUMN_INDEX));
-        assertEquals(EMPTY_SPACE, board.getLocation(TetrisGame.INITIAL_ROW_INDEX, TetrisGame.INITIAL_COLUMN_INDEX + 1));
+        assertEquals(EMPTY_SPACE, board.getLocation(AbstractTetrisGameState.INITIAL_ROW_INDEX, AbstractTetrisGameState.INITIAL_COLUMN_INDEX));
+        assertEquals(EMPTY_SPACE, board.getLocation(AbstractTetrisGameState.INITIAL_ROW_INDEX, AbstractTetrisGameState.INITIAL_COLUMN_INDEX + 1));
     }
 
     @Test
     public void givenATickHasOccurredWhenAPieceHitsTheBottomOfTheBoardThenANewPieceIsPlaced() {
         StraightLinePiece straightLinePiece = new StraightLinePiece();
         when(pieceFactory.newPiece()).thenReturn(straightLinePiece);
-        ITetrisGame tetrisGame = TetrisGame.startGame(pieceFactory);
+        TetrisGameState tetrisGame = TetrisGame.startGame(pieceFactory);
 
         tetrisGame = movePieceToBottomOfTheBoard(tetrisGame, straightLinePiece);
 
@@ -80,7 +82,7 @@ public class TetrisGameTest {
         assertEquals(FILLED_SPACE, tetrisGame.getBoard().getLocation(1, 6));
     }
 
-    private ITetrisGame movePieceToBottomOfTheBoard(ITetrisGame tetrisGame, TetrisPiece tetrisPiece) {
+    private TetrisGameState movePieceToBottomOfTheBoard(TetrisGameState tetrisGame, TetrisPiece tetrisPiece) {
         int numTicks = tetrisGame.getBoard().getHeight() - tetrisPiece.getShape().length;
         for (int i=0; i<numTicks; i++) {
             tetrisGame = tetrisGame.tick();
