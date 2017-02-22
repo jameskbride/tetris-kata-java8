@@ -42,14 +42,19 @@ public class Board {
     }
 
     private boolean updateBoardData(TetrisPiece piece, Coords coords) {
-        int pieceLength = piece.getShape().length;
         int currentBoardRowIndex = coords.getRowIndex();
-        if (currentBoardRowIndex + pieceLength - 1 >= getHeight()) {
-            return PIECE_STOPPED;
-        }
-        for (int pieceRowIndex=0; pieceRowIndex<pieceLength; pieceRowIndex++) {
+        
+        return pieceHitBottom(piece, currentBoardRowIndex) ? PIECE_STOPPED : drawPieceAtCoordinates(piece, coords, currentBoardRowIndex);
+    }
+
+    private boolean pieceHitBottom(TetrisPiece piece, int currentBoardRowIndex) {
+        return currentBoardRowIndex + getPieceHeight(piece) - 1 >= getHeight();
+    }
+
+    private boolean drawPieceAtCoordinates(TetrisPiece piece, Coords coords, int currentBoardRowIndex) {
+        for (int pieceRowIndex=0; pieceRowIndex<getPieceHeight(piece); pieceRowIndex++) {
             int currentBoardColumnIndex = coords.getColumnIndex();
-            for (int pieceColumnIndex=0; pieceColumnIndex<piece.getShape()[0].length; pieceColumnIndex++) {
+            for (int pieceColumnIndex = 0; pieceColumnIndex< getPieceWidth(piece); pieceColumnIndex++) {
                 boardData[currentBoardRowIndex][currentBoardColumnIndex] = piece.getShape()[pieceRowIndex][pieceColumnIndex];
                 currentBoardColumnIndex += 1;
             }
@@ -59,8 +64,16 @@ public class Board {
         return !PIECE_STOPPED;
     }
 
+    private int getPieceHeight(TetrisPiece piece) {
+        return piece.getShape().length;
+    }
+
+    private int getPieceWidth(TetrisPiece piece) {
+        return piece.getShape()[0].length;
+    }
+
     public void clearSectionAbovePiece(TetrisPiece activePiece, Coords previousCoords) {
-        int pieceWidth = activePiece.getShape()[0].length;
+        int pieceWidth = getPieceWidth(activePiece);
 
         for (int i=0; i<pieceWidth; i++) {
             boardData[previousCoords.getRowIndex()][previousCoords.getColumnIndex() + i] = EMPTY_SPACE;
