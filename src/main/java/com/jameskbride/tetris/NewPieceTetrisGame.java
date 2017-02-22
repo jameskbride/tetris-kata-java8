@@ -15,10 +15,7 @@ public class NewPieceTetrisGame extends TetrisGame {
         Coords newCoords = pieceCoordinates;
         boolean pieceStopped = movePiece(newCoords);
 
-        if (pieceStopped) {
-            return new NewPieceTetrisGame(board, pieceFactory.newPiece(), INITIAL_COORDS, pieceFactory);
-        } else {
-            return new ActivePieceTetrisGame(board, activePiece, newCoords, pieceFactory);
-        }
+        return getNextGameState(newCoords, pieceStopped);
     }
+
 }

@@ -46,4 +46,11 @@ public abstract class TetrisGame implements ITetrisGame {
         return board.setPiece(activePiece, newCoords);
     }
 
+    protected ITetrisGame getNextGameState(Coords newCoords, boolean pieceStopped) {
+        if (pieceStopped) {
+            return new NewPieceTetrisGame(board, pieceFactory.newPiece(), INITIAL_COORDS, pieceFactory);
+        } else {
+            return new ActivePieceTetrisGame(board, activePiece, newCoords, pieceFactory);
+        }
+    }
 }

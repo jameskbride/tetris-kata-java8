@@ -4,6 +4,7 @@ import com.jameskbride.tetris.pieces.PieceFactory;
 import com.jameskbride.tetris.pieces.TetrisPiece;
 
 public class ActivePieceTetrisGame extends TetrisGame {
+
     public ActivePieceTetrisGame(Board board, TetrisPiece activePiece, Coords pieceCoordinates, PieceFactory pieceFactory) {
         super(board, activePiece, pieceCoordinates, pieceFactory);
     }
@@ -16,11 +17,7 @@ public class ActivePieceTetrisGame extends TetrisGame {
             board.clearSectionAbovePiece(activePiece, pieceCoordinates);
         }
 
-        if (pieceStopped) {
-            return new NewPieceTetrisGame(board, pieceFactory.newPiece(), INITIAL_COORDS, pieceFactory);
-        } else {
-            return new ActivePieceTetrisGame(board, activePiece, newCoords, pieceFactory);
-        }
+        return getNextGameState(newCoords, pieceStopped);
     }
 
     private Coords calculateNewCoordinates(Coords previousCoords) {
