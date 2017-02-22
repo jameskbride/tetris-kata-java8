@@ -12,10 +12,6 @@ public class NewPieceTetrisGame extends TetrisGame {
 
     @Override
     public ITetrisGame tick() {
-        Coords newCoords = pieceCoordinates;
-        boolean pieceStopped = movePiece(newCoords);
-
-        return getNextGameState(newCoords, pieceStopped);
+        return getNextGameState(pieceCoordinates, movePiece(pieceCoordinates));
     }
-
 }
