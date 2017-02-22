@@ -3,84 +3,47 @@ package com.jameskbride.tetris;
 import com.jameskbride.tetris.pieces.PieceFactory;
 import com.jameskbride.tetris.pieces.TetrisPiece;
 
-public class TetrisGame {
+public abstract class TetrisGame implements ITetrisGame {
 
     public static final int INITIAL_ROW_INDEX = 0;
     public static final int INITIAL_COLUMN_INDEX = 5;
 
-    private static final boolean NEW_PIECE = true;
-
-    private static final Coords INITIAL_COORDS;
+    protected static final Coords INITIAL_COORDS;
     static {
         INITIAL_COORDS = new Coords(INITIAL_ROW_INDEX, INITIAL_COLUMN_INDEX);
     }
 
-    private final Board board;
-    private final TetrisPiece activePiece;
-    private final Coords pieceCoordinates;
-    private final PieceFactory pieceFactory;
-    private final boolean newPiece;
+    protected final Board board;
+    protected final TetrisPiece activePiece;
+    protected final Coords pieceCoordinates;
+    protected final PieceFactory pieceFactory;
 
-    public TetrisGame() {
-        this.board = new Board();
-        this.pieceCoordinates = INITIAL_COORDS;
-        this.activePiece = new EmptyPiece();
-        this.pieceFactory = new PieceFactory();
-        this.newPiece = NEW_PIECE;
-    }
-
-    private TetrisGame(Board board, TetrisPiece activePiece, Coords pieceCoordinates, PieceFactory pieceFactory, boolean newPiece) {
+    protected TetrisGame(Board board, TetrisPiece activePiece, Coords pieceCoordinates, PieceFactory pieceFactory) {
         this.board = board;
         this.activePiece = activePiece;
         this.pieceCoordinates = pieceCoordinates;
         this.pieceFactory = pieceFactory;
-        this.newPiece = newPiece;
     }
 
-    public TetrisGame startGame(PieceFactory pieceFactory) {
+    public static ITetrisGame startGame(PieceFactory pieceFactory) {
         Board board = new Board();
         TetrisPiece activePiece = pieceFactory.newPiece();
         Coords pieceCoordinates = INITIAL_COORDS;
         board.setPiece(activePiece, pieceCoordinates);
 
-        return new TetrisGame(board, activePiece, pieceCoordinates, pieceFactory, !NEW_PIECE);
+        return new ActivePieceTetrisGame(board, activePiece, pieceCoordinates, pieceFactory);
     }
 
+    @Override
     public Board getBoard() {
         return board;
     }
 
-    public TetrisGame tick() {
-        Coords newCoords = newPiece ? pieceCoordinates : calculateNewCoordinates(pieceCoordinates);
-        boolean pieceStopped = movePiece(newCoords);
-        if (!pieceStopped && !newPiece) {
-            board.clearSectionAbovePiece(activePiece, pieceCoordinates);
-        }
+    @Override
+    public abstract ITetrisGame tick();
 
-        if (pieceStopped) {
-           return new TetrisGame(board, pieceFactory.newPiece(), INITIAL_COORDS, pieceFactory, NEW_PIECE);
-        } else {
-            return new TetrisGame(board, activePiece, newCoords, pieceFactory, !NEW_PIECE);
-        }
-    }
-
-    private boolean movePiece(Coords newCoords) {
+    protected boolean movePiece(Coords newCoords) {
         return board.setPiece(activePiece, newCoords);
     }
 
-    private Coords calculateNewCoordinates(Coords previousCoords) {
-        return new Coords(previousCoords.getRowIndex() + 1, previousCoords.getColumnIndex());
-    }
-
-    //Placeholder for TetrisGame constructor only.  Never to be used in the game.
-    private static class EmptyPiece implements TetrisPiece {
-
-        public String[][] getShape() {
-            String[][] shape = {
-                    {EMPTY_SPACE}
-            };
-
-            return shape;
-        }
-    }
 }
