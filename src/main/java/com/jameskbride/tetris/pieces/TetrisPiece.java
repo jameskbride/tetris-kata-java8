@@ -6,4 +6,12 @@ public interface TetrisPiece {
     String EMPTY_SPACE = " ";
 
     String[][] getShape();
+
+    default int getHeight() {
+        return getShape().length;
+    }
+
+    default int getWidth() {
+        return getShape()[0].length;
+    }
 }
